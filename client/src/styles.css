@@ -1,0 +1,5 @@
+/* You can add global styles to this file, and also import other style files */
+body { background-color: #003847; }
+p { color: bisque; }
+nav { margin: 20px 0; }
+nav a.active { background-color: #E44F26 !important; border-color: #C94B2B !important; }
