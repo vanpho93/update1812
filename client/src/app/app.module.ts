@@ -9,6 +9,7 @@ import { MustLoggedInGuard } from './guards/must-logged-in.guard';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { Request } from './services/request.service';
 import { UserService } from './services/user.service';
+import { StoryService } from './services/story.service';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './screens/home-page/home-page.component';
@@ -55,7 +56,7 @@ const routesConfig: Routes = [
     RouterModule.forRoot(routesConfig),
     StoreModule.forRoot({ user: userReducer })
   ],
-  providers: [MustLoggedInGuard, MustBeGuestGuard, Request, UserService],
+  providers: [MustLoggedInGuard, MustBeGuestGuard, Request, UserService, StoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

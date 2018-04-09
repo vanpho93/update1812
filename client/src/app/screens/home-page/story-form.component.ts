@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StoryService } from '../../services/story.service';
 
 @Component({
   selector: 'app-story-form',
@@ -11,11 +12,16 @@ import { Component, OnInit } from '@angular/core';
       [(ngModel)]="txtContent"
   ></textarea>
   <br>
-  <button class="btn btn-success">Dang</button>
+  <button class="btn btn-success" (click)="postStory();">Dang</button>
   `,
   styleUrls: ['./home-page.component.css']
 })
 export class StoryFormComponent {
   txtContent = '';
-  constructor() { }
+
+  constructor(private storyService: StoryService) {}
+
+  postStory() {
+    this.storyService.createStory(this.txtContent);
+  }
 }
