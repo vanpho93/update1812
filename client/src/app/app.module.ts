@@ -18,6 +18,10 @@ import { SignUpComponent } from './screens/sign-up/sign-up.component';
 import { SignInFormComponent } from './screens/sign-in-form/sign-in-form.component';
 import { ForgotPasswordComponent } from './screens/forgot-password/forgot-password.component';
 import { PageNotFoundComponent } from './screens/page-not-found/page-not-found.component';
+
+import { StoryFormComponent } from './screens/home-page/story-form.component';
+
+
 //reducers
 import { userReducer } from './ngrx/userReducer';
 
@@ -40,7 +44,8 @@ const routesConfig: Routes = [
     SignUpComponent,
     SignInFormComponent,
     ForgotPasswordComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    StoryFormComponent
   ],
   imports: [
     BrowserModule,

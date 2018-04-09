@@ -10,12 +10,12 @@ import { Store } from '@ngrx/store';
 })
 
 export class AppComponent {
-  isLoading = true;
+  isLoading = false;
   user = null;
   constructor(private userService: UserService, private store: Store<any>) {
     this.store.select('user').subscribe(user => this.user = user);
-    this.userService.check()
-    .then(() => this.isLoading = false);
+    // this.userService.check()
+    // .then(() => this.isLoading = false);
   }
 
   signOut() {
