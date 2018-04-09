@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'https://project1812.herokuapp.com';
 
 @Injectable()
 

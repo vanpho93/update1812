@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Request } from './request.service';
 
-const SERVER_URL = 'http://localhost:3000';
-
 @Injectable()
 
 export class UserService {
@@ -33,6 +31,7 @@ export class UserService {
             if (!res.success) return;
             localStorage.setItem('token', res.user.token);
             this.store.dispatch({ type: 'SET_USER', user: res.user });
-        });
+        })
+        .catch(error => console.log(error.message));
     }
 }

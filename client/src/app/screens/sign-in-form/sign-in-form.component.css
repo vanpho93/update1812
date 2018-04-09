@@ -1,0 +1,7 @@
+input.ng-invalid.ng-touched {
+    border-color: brown;
+}
+
+label {
+    color: wheat;
+}

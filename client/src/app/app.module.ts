@@ -1,31 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 
-import { MustLoggedInGuard } from './must-logged-in.guard';
-import { MustBeGuestGuard } from './must-be-guest.guard';
+import { MustLoggedInGuard } from './guards/must-logged-in.guard';
+import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { Request } from './services/request.service';
+import { UserService } from './services/user.service';
 
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { ProfileComponent } from './profile/profile.component';
-import { MessagesComponent } from './messages/messages.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomePageComponent } from './screens/home-page/home-page.component';
+import { ProfileComponent } from './screens/profile/profile.component';
+import { FriendsComponent } from './screens/friends/friends.component';
+import { SignUpComponent } from './screens/sign-up/sign-up.component';
+import { SignInFormComponent } from './screens/sign-in-form/sign-in-form.component';
+import { ForgotPasswordComponent } from './screens/forgot-password/forgot-password.component';
+import { PageNotFoundComponent } from './screens/page-not-found/page-not-found.component';
 //reducers
-import { loadingReducer } from './ngrx/loadingReducer';
 import { userReducer } from './ngrx/userReducer';
 
 const routesConfig: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [MustLoggedInGuard] },
-  { path: 'messages', component: MessagesComponent, canActivate: [MustLoggedInGuard] },
-  { path: 'signin', component: SignInComponent, canActivate: [MustBeGuestGuard] },
+  { path: 'friends', component: FriendsComponent, canActivate: [MustLoggedInGuard] },
+  { path: 'signin', component: SignInFormComponent, canActivate: [MustBeGuestGuard] },
   { path: 'signup', component: SignUpComponent, canActivate: [MustBeGuestGuard] },
   { path: 'password', component: ForgotPasswordComponent, canActivate: [MustBeGuestGuard] },
   { path: '**', component: PageNotFoundComponent }
@@ -36,9 +36,9 @@ const routesConfig: Routes = [
     AppComponent,
     HomePageComponent,
     ProfileComponent,
-    MessagesComponent,
+    FriendsComponent,
     SignUpComponent,
-    SignInComponent,
+    SignInFormComponent,
     ForgotPasswordComponent,
     PageNotFoundComponent
   ],
@@ -46,10 +46,11 @@ const routesConfig: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routesConfig),
-    StoreModule.forRoot({ user: userReducer, loading: loadingReducer })
+    StoreModule.forRoot({ user: userReducer })
   ],
-  providers: [MustLoggedInGuard, MustBeGuestGuard, Request],
+  providers: [MustLoggedInGuard, MustBeGuestGuard, Request, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
