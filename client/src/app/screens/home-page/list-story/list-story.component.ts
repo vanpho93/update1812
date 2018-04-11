@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as faker from 'faker';
 import { StoryService } from '../../../services/story.service';
 import { AppState, Story } from '../../../types';
 
@@ -21,9 +20,5 @@ export class ListStoryComponent implements OnInit {
 
   ngOnInit() {
     this.storyService.getAllStories();
-  }
-
-  get randomAvatar() {
-    return faker.image.avatar();
   }
 }

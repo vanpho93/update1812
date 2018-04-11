@@ -30,4 +30,11 @@ export class StoryService {
             this.store.dispatch({ type: 'ADD_COMMENT', _id: storyId, comment: response.comment });
         });
     }
+
+    removeStory(storyId: string) {
+        this.request.delete('/story/' + storyId)
+        .then(response => {
+            this.store.dispatch({ type: 'REMOVE_STORY', _id: storyId });
+        });
+    }
 }

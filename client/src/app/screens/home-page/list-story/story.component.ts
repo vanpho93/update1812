@@ -1,15 +1,26 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 import * as faker from 'faker';
 import { StoryService } from '../../../services/story.service';
+import { AppState, Story } from '../../../types';
 
 @Component({
     selector: 'app-story',
     template: `
       <div class="story" >
-            <h3>
-            <img class="avatar" src="{{ avatar }}" />
-            {{ storyInfo.author.name }}
-            </h3>
+            <div class="header">
+              <h3>
+                <img class="avatar" src="{{ avatar }}" />
+                {{ storyInfo.author.name }}
+              </h3>
+              <button
+                class="btn btn-danger"
+                *ngIf="storyInfo.author._id === myUserId"
+                (click)="removeStory();"  
+              >
+                x
+              </button>
+            </div>
             <p>{{ storyInfo.content }}</p>
             <hr>
             <div *ngFor="let comment of storyInfo.comments">
@@ -41,18 +52,36 @@ import { StoryService } from '../../../services/story.service';
         border-radius: 5px;
         margin: 5px;
       }
+
+      .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      button {
+        height: 50px;
+        width: 50px;
+      }
     `
     ]
 })
 
 export class StoryComponent {
-    @Input() storyInfo: any;
+    @Input() storyInfo: Story;
     avatar = faker.image.avatar();
     txtComment = '';
-    constructor(private storyService: StoryService) { }
+    myUserId = '';
+    constructor(private storyService: StoryService, private store: Store<AppState>) {
+      this.store.select('user').select('_id').subscribe(id => this.myUserId = id);
+    }
 
     addComment() {
         this.storyService.addComment(this.storyInfo._id, this.txtComment);
         this.txtComment = '';
+    }
+
+    removeStory() {
+      this.storyService.removeStory(this.storyInfo._id);
     }
 }
