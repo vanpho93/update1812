@@ -27,7 +27,7 @@ export class StoryService {
         this.request.post('/comment', { storyId, content })
         .then(response => {
             if (!response.success) return alert(response.code);
-            
+            this.store.dispatch({ type: 'ADD_COMMENT', _id: storyId, comment: response.comment });
         });
     }
 }

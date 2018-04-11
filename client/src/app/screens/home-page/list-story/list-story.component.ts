@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as faker from 'faker';
 import { StoryService } from '../../../services/story.service';
+import { AppState, Story } from '../../../types';
 
 @Component({
   selector: 'app-list-story',
@@ -13,8 +14,8 @@ import { StoryService } from '../../../services/story.service';
 })
 
 export class ListStoryComponent implements OnInit {
-  stories = [];
-  constructor(private store: Store<any>, private storyService: StoryService) {
+  stories: Story[] = [];
+  constructor(private store: Store<AppState>, private storyService: StoryService) {
     this.store.select('stories').subscribe(stories => this.stories = stories);
   }
 
