@@ -7,12 +7,27 @@ import { Request } from './request.service';
 
 export class StoryService {
     constructor(private request: Request, private store: Store<any>) {}
+    
+    getAllStories() {
+        return this.request.get('/story')
+        .then(response => {
+            this.store.dispatch({ type: 'SET_STORIES', stories: response.stories });
+        });
+    }
 
     createStory(content: string) {
         return this.request.post('/story', { content })
         .then(response => {
             if (!response.success) return alert(response.message);
-            alert('Them thanh cong');
+            this.store.dispatch({ type: 'ADD_STORY', story: response.story });
+        });
+    }
+
+    addComment(storyId: string, content: string) {
+        this.request.post('/comment', { storyId, content })
+        .then(response => {
+            if (!response.success) return alert(response.code);
+            
         });
     }
 }

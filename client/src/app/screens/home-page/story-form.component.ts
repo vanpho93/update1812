@@ -22,6 +22,7 @@ export class StoryFormComponent {
   constructor(private storyService: StoryService) {}
 
   postStory() {
-    this.storyService.createStory(this.txtContent);
+    this.storyService.createStory(this.txtContent)
+    this.txtContent = '';
   }
 }

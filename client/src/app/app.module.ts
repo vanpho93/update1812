@@ -21,10 +21,13 @@ import { ForgotPasswordComponent } from './screens/forgot-password/forgot-passwo
 import { PageNotFoundComponent } from './screens/page-not-found/page-not-found.component';
 
 import { StoryFormComponent } from './screens/home-page/story-form.component';
+import { ListStoryComponent } from './screens/home-page/list-story/list-story.component';
+import { StoryComponent } from './screens/home-page/list-story/story.component';
 
 
 //reducers
 import { userReducer } from './ngrx/userReducer';
+import { storiesReducer } from './ngrx/storiesReducer';
 
 const routesConfig: Routes = [
   { path: '', component: HomePageComponent },
@@ -46,7 +49,9 @@ const routesConfig: Routes = [
     SignInFormComponent,
     ForgotPasswordComponent,
     PageNotFoundComponent,
-    StoryFormComponent
+    StoryFormComponent,
+    ListStoryComponent,
+    StoryComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,7 @@ const routesConfig: Routes = [
     HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routesConfig),
-    StoreModule.forRoot({ user: userReducer })
+    StoreModule.forRoot({ user: userReducer, stories: storiesReducer })
   ],
   providers: [MustLoggedInGuard, MustBeGuestGuard, Request, UserService, StoryService],
   bootstrap: [AppComponent]
