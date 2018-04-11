@@ -10,6 +10,7 @@ import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { Request } from './services/request.service';
 import { UserService } from './services/user.service';
 import { StoryService } from './services/story.service';
+import { FriendService } from './services/friend.service';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './screens/home-page/home-page.component';
@@ -28,6 +29,7 @@ import { StoryComponent } from './screens/home-page/list-story/story.component';
 //reducers
 import { userReducer } from './ngrx/userReducer';
 import { storiesReducer } from './ngrx/storiesReducer';
+import { friendsReducer, sentRequestsReducer, incommingRequestsReducer, otherUsersReducer } from './ngrx/allUserReducer';
 
 const routesConfig: Routes = [
   { path: '', component: HomePageComponent },
@@ -59,9 +61,16 @@ const routesConfig: Routes = [
     HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routesConfig),
-    StoreModule.forRoot({ user: userReducer, stories: storiesReducer })
+    StoreModule.forRoot({
+      user: userReducer,
+      stories: storiesReducer,
+      friends: friendsReducer,
+      incommingRequests: incommingRequestsReducer,
+      sentRequests: sentRequestsReducer,
+      otherUsers: otherUsersReducer
+    })
   ],
-  providers: [MustLoggedInGuard, MustBeGuestGuard, Request, UserService, StoryService],
+  providers: [MustLoggedInGuard, MustBeGuestGuard, Request, UserService, StoryService, FriendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
