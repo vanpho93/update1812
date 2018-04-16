@@ -7,18 +7,27 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         <p>Animation component</p>
         <div *ngFor="let user of users">
             <div
+                class="user"
                 [@userAnim]="user.active ? 'active' : 'inactive'"
                 (click)="user.active = !user.active"
             >
                 <p>Name: {{ user.name }}</p>
+                <button class="btn btn-danger">Remove</button>
             </div>    
         </div>
     `,
-    styles: [],
+    styles: [
+        `.user {
+            margin: 10px;
+            padding: 10px;
+            width: 100px;
+            border-radius: 10px;
+        }`
+    ],
     animations: [
         trigger('userAnim', [
             state('active', style({
-                backgroundColor: 'white'
+                backgroundColor: '#C4B7D7'
             })),
             state('inactive', style({
                 backgroundColor: 'gray'
