@@ -11,7 +11,7 @@ import { User, AppState } from './types';
 })
 
 export class AppComponent {
-  isLoading = true;
+  isLoading = false;
   user: User = null;
   constructor(private userService: UserService, private store: Store<AppState>) {
     this.store.select('user').subscribe(user => this.user = user);

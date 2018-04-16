@@ -9,10 +9,12 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
             <div
                 class="user"
                 [@userAnim]="user.active ? 'active' : 'inactive'"
-                (click)="user.active = !user.active"
             >
                 <p>Name: {{ user.name }}</p>
                 <button class="btn btn-danger">Remove</button>
+                <br>
+                <br>
+                <button class="btn btn-info" (click)="user.active = !user.active">Toggle</button>
             </div>    
         </div>
     `,
