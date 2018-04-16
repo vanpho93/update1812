@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { PageNotFoundComponent } from './screens/page-not-found/page-not-found.c
 import { StoryFormComponent } from './screens/home-page/story-form.component';
 import { ListStoryComponent } from './screens/home-page/list-story/list-story.component';
 import { StoryComponent } from './screens/home-page/list-story/story.component';
+import { AnimationComponent } from './screens/animation.component';
 
 
 //reducers
@@ -33,6 +35,7 @@ import { friendsReducer, sentRequestsReducer, incommingRequestsReducer, otherUse
 
 const routesConfig: Routes = [
   { path: '', component: HomePageComponent },
+  { path: 'animation', component: AnimationComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [MustLoggedInGuard] },
   { path: 'friends', component: FriendsComponent, canActivate: [MustLoggedInGuard] },
   { path: 'signin', component: SignInFormComponent, canActivate: [MustBeGuestGuard] },
@@ -53,13 +56,15 @@ const routesConfig: Routes = [
     PageNotFoundComponent,
     StoryFormComponent,
     ListStoryComponent,
-    StoryComponent
+    StoryComponent,
+    AnimationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routesConfig),
     StoreModule.forRoot({
       user: userReducer,
