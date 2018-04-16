@@ -1,2 +1,7 @@
-<app-story-form></app-story-form>
-<app-list-story></app-list-story>
+<div *ngIf="user">
+    <app-story-form></app-story-form>
+    <app-list-story></app-list-story>
+</div>
+<div *ngIf="!user">
+    <h3 style="color: wheat">Khoa Pham. Vui long dang nhap.</h3>
+</div>

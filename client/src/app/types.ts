@@ -23,4 +23,8 @@ export interface User {
 export interface AppState {
     user: User;
     stories: Story[];
+    friends: User[];
+    incommingRequests: User[];
+    sentRequests: User[];
+    otherUsers: User[];
 }
