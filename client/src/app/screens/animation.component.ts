@@ -11,7 +11,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
                 [@userAnim]="user.active ? 'active' : 'inactive'"
             >
                 <p>Name: {{ user.name }}</p>
-                <button class="btn btn-danger">Remove</button>
+                <button class="btn btn-danger" (click)="removeUser(user.name)">Remove</button>
                 <br>
                 <br>
                 <button class="btn btn-info" (click)="user.active = !user.active">Toggle</button>
@@ -47,4 +47,9 @@ export class AnimationComponent {
         { name: 'Tun', active: true },
         { name: 'Tuan', active: false },
     ]
+
+    removeUser(name: string) {
+        const index = this.users.findIndex(u => u.name === name);
+        this.users.splice(index, 1);
+    }
 }
