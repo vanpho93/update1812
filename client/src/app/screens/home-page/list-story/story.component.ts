@@ -16,12 +16,13 @@ import { AppState, Story } from '../../../types';
               <button
                 class="btn btn-danger"
                 *ngIf="storyInfo.author._id === myUserId"
-                (click)="removeStory();"  
+                (click)="removeStory();"
               >
                 x
               </button>
             </div>
             <p>{{ storyInfo.content }}</p>
+            <a (click)="likeStory();">{{ storyInfo.fans.length }} Likes</a>
             <hr>
             <div *ngFor="let comment of storyInfo.comments">
                 <p>{{ comment.user.name }}: {{ comment.content }}</p>
@@ -83,5 +84,9 @@ export class StoryComponent {
 
     removeStory() {
       this.storyService.removeStory(this.storyInfo._id);
+    }
+
+    likeStory() {
+      this.storyService.likeStory(this.storyInfo._id);
     }
 }

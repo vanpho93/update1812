@@ -3,7 +3,7 @@ export interface Comment {
     user: {
         _id: string;
         name: string;
-    }
+    };
 }
 
 export interface Story {
@@ -11,7 +11,8 @@ export interface Story {
     comments: Comment[];
     author: {
         name: string;
-    }
+    };
+    fans: string[];
 }
 
 export interface User {

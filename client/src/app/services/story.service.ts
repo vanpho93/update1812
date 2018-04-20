@@ -7,7 +7,7 @@ import { Request } from './request.service';
 
 export class StoryService {
     constructor(private request: Request, private store: Store<any>) {}
-    
+
     getAllStories() {
         return this.request.get('/story')
         .then(response => {
@@ -35,6 +35,14 @@ export class StoryService {
         this.request.delete('/story/' + storyId)
         .then(response => {
             this.store.dispatch({ type: 'REMOVE_STORY', _id: storyId });
+        });
+    }
+
+    likeStory(storyId) {
+        this.request.post('/like/' + storyId, {})
+        .then(response => {
+            if (!response.success) return alert(response.code);
+            this.store.dispatch({ type: 'LIKE_STORY', _id: storyId, userId: 'abcd' });
         });
     }
 }

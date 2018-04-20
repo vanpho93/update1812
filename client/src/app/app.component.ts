@@ -15,8 +15,8 @@ export class AppComponent {
   user: User = null;
   constructor(private userService: UserService, private store: Store<AppState>) {
     this.store.select('user').subscribe(user => this.user = user);
-    // this.userService.check()
-    // .then(() => this.isLoading = false);
+    this.userService.check()
+    .then(() => this.isLoading = false);
   }
 
   signOut() {
